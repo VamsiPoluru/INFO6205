@@ -6,12 +6,11 @@ public class HWQUPC_Solution {
 
     public static void main(String[] args)
     {
-        int[] testdata=new int[50];
+        int[] testdata=new int[51];
         int numberOfRuns=200,out=0;
 
-        Random random = new Random();
-
-        for(int i=0; i<testdata.length;i++) testdata[i]=random.nextInt(50,5000);
+        for(int i=0;i<testdata.length;i++)
+            testdata[i]=i*10000;
 
         System.out.println("Number of Elements\t"+"Number of Randomly Generated Pairs");
         for(int i=0;i<testdata.length;i++)
@@ -22,7 +21,7 @@ public class HWQUPC_Solution {
                 out += count(testdata[i]);
             }
 
-            System.out.println(testdata[i]+" "+out / numberOfRuns);
+            System.out.println("Number of elements: "+ testdata[i]+" and Number of the pairs: "+(out / numberOfRuns));
         }
     }
 
