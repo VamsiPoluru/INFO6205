@@ -4,31 +4,32 @@ import java.util.*;
 
 public class HWQUPC_Solution {
 
+    static int randomPairsGenerated=0;
     public static void main(String[] args)
     {
-        int[] testdata=new int[51];
+        int[] testdata=new int[50];
         int numberOfRuns=200,out=0;
 
         for(int i=0;i<testdata.length;i++)
             testdata[i]=i*10000;
 
         System.out.println("Number of Elements\t"+"Number of Randomly Generated Pairs");
-        for(int i=0;i<testdata.length;i++)
+        for(int i=1;i<testdata.length;i++)
         {
-            out=0;
+            randomPairsGenerated=0;
             for (int j = 0; j < numberOfRuns; j++)
             {
-                out += count(testdata[i]);
+                out = count(testdata[i]);
             }
 
-            System.out.println("Number of elements: "+ testdata[i]+" and Number of the pairs: "+(out / numberOfRuns));
+            System.out.println("Number of elements: "+testdata[i]+", Number of Connections needed are "+out + " and Number of the pairs: "+(randomPairsGenerated / numberOfRuns));
         }
     }
 
 
     public static int count(int i)
     {
-        int randomPairsGenerated=0;
+        int connectionCount=0;
         UF_HWQUPC unionfind=new UF_HWQUPC(i,true);
         Random random= new Random();
         while(unionfind.components()>1)
@@ -38,10 +39,10 @@ public class HWQUPC_Solution {
             randomPairsGenerated++;
             if(!unionfind.isConnected(a,b)){
                 unionfind.union(a,b);
+                connectionCount++;
             }
         }
-        //System.out.println("number of connects"+unions);
-        return randomPairsGenerated;
+        return connectionCount;
     }
 }
 
